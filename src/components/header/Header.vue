@@ -4,8 +4,12 @@
 			<div class="logo"></div>
 		</div>
 		<div class="rightContent">
-			<ul>
-				<li v-for="item in items" :key="item.name">
+			<ul class="menuList">
+				<li
+					v-for="item in items"
+					:class="`menuItem${item.index}`"
+					:key="item.name"
+				>
 					<a href="javascritp:void(0)">
 						{{ item.name }}
 					</a>
@@ -16,70 +20,30 @@
 </template>
 
 <script>
+  import { TimelineMax } from 'gsap';
 	export default {
 		name: 'Header',
 		props: {
 			items: Array
-		}
+		},
+		methods: {
+			delayedFade: () => {
+				const tl = new TimelineMax();
+				const logoTl = new TimelineMax();
+				tl
+					.from('.menuList', 1.5, { opacity: 0 })
+					.from('.menuItem1', 1.5, { x: -32, delay: .4, opacity: 0 }, 0)
+					.from('.menuItem2', 1.5, { x: -32, delay: .2, opacity: 0 }, 0)
+					.from('.menuItem3', 1.5, { x: -32, delay: .1, opacity: 0 }, 0)
+
+				logoTl
+					.from('.logo', 1.5, { x: 16, delay: 0, opacity: 0 })
+			}
+		},
+		mounted() { this.delayedFade() },
 	}
 </script>
+
 <style>
-	.container {
-		height: 48px;
-		display: flex;
-		padding: 16px 0;
-		align-items: center;
-	}
-
-	.leftContent {
-		width: 50%;
-	}
-
-	.rightContent {
-		width: 50%;
-		padding-right: 16px;
-	}
-
-	ul {
-		list-style: none;
-		display: flex;
-		align-items: center;
-		height: 100%;
-		justify-content: flex-end;
-		margin: 0;
-		padding: 0;
-	}
-
-	li {
-		font-size: 12px;
-		color: white;
-		padding: 4px 16px;
-		margin-right: 8px;
-		text-transform: uppercase;
-		border: 1px solid white;
-		border-radius: 16px;
-		text-align: center;
-		cursor: pointer;
-		background-color: transparent;
-		transition: background-color .3s ease-in;
-	}
-
-	li:hover {
-		background-color:white;
-		color: rgb(46,46,46);
-	}
-	
-	li:last-child {
-		margin-right: 0;
-	}
-
-	.logo {
-		height: 32px;
-		width: 32px;
-		border-radius: 50%;
-		background: rgb(237,237,237);
-		background: linear-gradient(180deg, rgba(237,237,237,1) 15%, rgba(52,52,52,1) 100%);
-		margin-left: 16px;
-		opacity: .7;
-	}
+	@import './styles.css';
 </style>
