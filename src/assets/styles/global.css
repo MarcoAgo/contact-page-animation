@@ -22,3 +22,10 @@ a {
 	color: inherit;
 	text-decoration: none;
 }
+
+/** General classes */
+.fullWidth { width: 100%; }
+.flex { display: flex; }
+.end { justify-content: flex-end; }
+.start { justify-content: flex-start; }
+.spacedBetween { justify-content: space-between; }
