@@ -31,13 +31,13 @@
 				const tl = new TimelineMax();
 				const logoTl = new TimelineMax();
 				tl
-					.from('.menuList', 1.5, { opacity: 0 })
-					.from('.menuItem1', 1.5, { x: -32, delay: .4, opacity: 0 }, 0)
-					.from('.menuItem2', 1.5, { x: -32, delay: .2, opacity: 0 }, 0)
-					.from('.menuItem3', 1.5, { x: -32, delay: .1, opacity: 0 }, 0)
+					.from('.menuList', 3, { opacity: 0 })
+					.from('.menuItem1', 3, { x: -32, delay: .8, opacity: 0 }, 0)
+					.from('.menuItem2', 3, { x: -32, delay: .6, opacity: 0 }, 0)
+					.from('.menuItem3', 3, { x: -32, delay: .4, opacity: 0 }, 0)
 
 				logoTl
-					.from('.logo', 1.5, { x: 16, delay: 0, opacity: 0 })
+					.from('.logo', 3, { x: 16, delay: 1, opacity: 0 })
 			}
 		},
 		mounted() { this.delayedFade() },

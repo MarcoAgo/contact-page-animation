@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { TimelineMax, Power4 } from "gsap";
+import { TimelineMax, Expo, Power4 } from "gsap";
 import MorphD from "../morph/MorphD.vue";
 import LettersEnterRight from "./LettersEnterRight";
 
@@ -28,20 +28,21 @@ export default {
     const number1TL = new TimelineMax();
     const number2TL = new TimelineMax();
 
-    number1TL.from('#number1', 1.5, { ease: Power4.easeOut, x: 16, opacity: 0, delay: 1.5 })
-    number2TL.from('#number2', 1.5, { ease: Power4.easeOut, x: 16, opacity: 0, delay: 1.5 });
+    number1TL.from('#number1', 2, { ease: Power4.easeOut, x: 16, opacity: 0, delay: 2.5 })
+    number2TL.from('#number2', 2, { ease: Power4.easeOut, x: 16, opacity: 0, delay: 2.5 });
 
     containerTL
-      .from("#dropLineContainer", 1.5, { ease: Power4.easeOut, x: 2500 })
-      .to("#dropLineContainer", 1.5, { ease: Power4.easeOut, x: 0 });
+      .from("#dropLineContainer", 3, { ease: Expo.easeInOut, x: 1700 })
   },
 };
 </script>
 
 <style scoped>
   #mainWrapper {
-    padding-top: 32px;
+    padding-top: 16px;
+    width: 100%;
   }
+  
   #dropLineContainer {
     display: flex;
     padding: 0 24px;
@@ -49,14 +50,14 @@ export default {
   }
 
   #numbersWrapper {
-    width: 60%;
+    width: 100%;
     opacity: .7;
     padding-right: 24px;
   }
 
   #dropWrapper {
-    height: 290px;
-    width: 40%;
-    min-width: 650px;
+    height: 230px;
+    min-width: 950px;
+    max-width: 950px;
   }
 </style>
