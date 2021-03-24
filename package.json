@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "deploy": "node scripts/gh-pages-deploy.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -15,6 +16,7 @@
     "vue-styled-components": "^1.6.0"
   },
   "devDependencies": {
+    "execa": "latest",
     "@vue/cli-plugin-babel": "^4.5.0",
     "@vue/cli-plugin-eslint": "^4.5.0",
     "@vue/cli-service": "^4.5.0",

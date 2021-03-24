@@ -1,6 +1,9 @@
 <template>
   <div>
     <custom-header v-bind:items="items"></custom-header>
+    <div id="absoluteContent">
+      <scale-centerd-image></scale-centerd-image>
+    </div>
     <div id="centeredContent">
       <div id="rowWrapper">
         <drop-line></drop-line>
@@ -20,13 +23,12 @@ import CustomHeader from "../header/Header";
 import DropLine from "../dropLine/DropLine";
 import Us from "../usRow/Us";
 import LastLineWrapper from "../lastLineRow/LastLineWrapper";
+import ScaleCenterdImage from '../scaleUpImage/ScaleCenterdImage.vue';
 
 export default {
   name: "ContactPageWrapper",
-  components: { CustomHeader, DropLine, Us, LastLineWrapper },
-  props: {
-    msg: String,
-  },
+  components: { CustomHeader, DropLine, Us, LastLineWrapper, ScaleCenterdImage },
+  props: {  },
   data() {
     return {
       items: [
