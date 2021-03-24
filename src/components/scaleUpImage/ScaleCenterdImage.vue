@@ -4,14 +4,14 @@
   </div>
 </template>
 <script>
-import { TimelineLite, Expo } from 'gsap';
+import gsap from 'gsap';
 export default {
   name: 'ScaleCenteredImage',
   mounted() {
-    const imageTL = new TimelineLite();
+    const imageTL = gsap.timeline();
 
     imageTL
-      .from('#imageWrapper', 3, { delay: 1, ease: Expo.easeOut, scale: 0 })
+      .from('#imageWrapper', 3, { delay: 1, ease: 'expo.easeOut', scale: 0 })
   }
 }
 </script>
