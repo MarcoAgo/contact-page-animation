@@ -59,6 +59,7 @@ export default {
     font-weight: 100;
     margin-bottom: 16px;
     opacity: .7;
+    padding: 0 16px;
   }
   
   #center span {
@@ -72,7 +73,6 @@ export default {
       font-weight: 100;
       margin-bottom: 16px;
       opacity: .7;
-      padding: 0 16px;
     }
   }
 </style>

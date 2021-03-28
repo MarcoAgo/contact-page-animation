@@ -1,7 +1,7 @@
 <template>
   <div>
     <custom-header v-bind:items="items"></custom-header>
-    <div id="absoluteContent">
+    <div>
       <scale-centerd-image></scale-centerd-image>
     </div>
     <div id="centeredContent">

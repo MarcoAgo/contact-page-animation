@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import { TimelineMax, Expo } from 'gsap';
+import gsap from 'gsap';
 import manageSvgDataOnResizeAndInit from './manageSvgDataOnResizeAndInit';
 
 export default {
@@ -24,12 +24,12 @@ export default {
     }
   },
   mounted() {
-    const containerTL = new TimelineMax();
+    const containerTL = gsap.timeline();
 
     const pageWidth = window.innerWidth;
     this.data = manageSvgDataOnResizeAndInit(pageWidth);
     containerTL
-      .from("#usRow", 3, { ease: Expo.easeInOut, x: pageWidth })
+      .from("#usRow", 3, { ease: 'Expo.easeInOut', x: pageWidth })
   },
   created() {
     window.addEventListener('resize', this.trackWindowResize);

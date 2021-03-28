@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import { TimelineMax } from 'gsap';
+  import gsap from 'gsap';
 	export default {
 		name: 'Header',
 		props: {
@@ -28,8 +28,8 @@
 		},
 		methods: {
 			delayedFade: () => {
-				const tl = new TimelineMax();
-				const logoTl = new TimelineMax();
+				const tl = gsap.timeline();
+				const logoTl = gsap.timeline();
 				tl
 					.from('.menuList', 3, { opacity: 0 })
 					.from('.menuItem1', 3, { x: -32, delay: .8, opacity: 0 }, 0)
