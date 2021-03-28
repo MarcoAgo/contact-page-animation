@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <div id="imageWrapper">
-      <img id="image" alt="Contact centerd image" src="../../assets/images/scaleUpImage.jpeg" />
+      <div id="image"></div>
       <div id="imageLabel">
         <p>if you want ot buy from us become our licensed partner overseas or join our friendly team!</p>
       </div>
@@ -24,21 +24,29 @@ export default {
 <style scoped>
 #imageWrapper {
   height: 260px;
-  width: 400px;
+  width: 550px;
   position: absolute;
-  left: calc(50% - 200px);
+  left: calc(50% - 275px);
   top: calc(50% - 130px);
   z-index: 100;
 }
 
+#image {
+  height: 100%;
+  width: 100%;
+  background-image: url('../../assets/images/scaleUpImage.jpeg');
+  background-size: cover;
+  background-position: center center;
+}
+
 #imageLabel {
   position: absolute;
-  left: 432px;
+  left: 582px;
   text-transform: uppercase;
   font-size: 12px;
-  top: 180px;
+  top: 160px;
   opacity: 0;
-  width: 100%;
+  width: 350px;
   padding-right: 24px;
 }
 
@@ -61,7 +69,7 @@ export default {
 
   #imageLabel {
     left: 366px;
-    top: 140px;
+    top: 120px;
   }
 }
 </style>
