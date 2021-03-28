@@ -1,24 +1,24 @@
 <template>
-  <div class="flex">
+  <div class="flex centerAligned">
     <svg
-      width="518"
-      height="230"
-      viewBox="0 0 518 230"
+      :width="data.width"
+      :height="data.height"
+      :viewBox="data.viewBox"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M0 0H53.2286V186.629H168.557V230H0V0Z"
+        :d="data.d1"
         fill="white"
         fill-opacity="0.7"
       />
       <path
-        d="M198.298 0H251.527V230H198.298V0Z"
+        :d="data.d2"
         fill="white"
         fill-opacity="0.7"
       />
       <path
-        d="M517.053 0V230H473.353L358.682 90.3571V230H306.11V0H350.139L464.482 139.643V0H517.053Z"
+        :d="data.d3"
         fill="white"
         fill-opacity="0.7"
       />
@@ -28,10 +28,37 @@
 </template>
 <script>
 import MorphE from "../morph/MorphE";
+import manageSvgDataOnResizeAndInit from './manageSvgSizeOnResizeAndInit';
 
 export default {
   name: "NamedLine",
   components: { "morph-e": MorphE },
-  setup() {},
+  data() {
+    return {
+      data: {
+        height: null,
+        width: null,
+        viewBox: null,
+        d1: null,
+        d2: null,
+        d3: null,
+      }
+    }
+  },
+  created() {
+    window.addEventListener('resize', this.trackWindowResize);
+  },
+  mounted() {
+    const pageWidth = window.innerWidth;
+    this.data = manageSvgDataOnResizeAndInit(pageWidth);
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.trackWindowResize);
+  },
+  methods: {
+    trackWindowResize(e) {
+      this.data = manageSvgDataOnResizeAndInit(e.target.innerWidth);
+    }
+  }
 };
 </script>

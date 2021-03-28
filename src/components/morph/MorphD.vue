@@ -2,15 +2,15 @@
   <div id="container">
     <svg
       id="DSvg"
-      width="1252"
-      height="230"
-      viewBox="0 0 1252 230"
+      :width="data.widthInitial"
+      :height="data.height"
+      :viewBox="data.viewBoxInitial"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
         id="morphD"
-        d="M0 0H1124.49C1149.46 0 1171.47 4.81905 1190.53 14.4572C1209.8 23.8762 1224.7 37.2381 1235.21 54.5429C1245.95 71.8476 1251.31 92 1251.31 115C1251.31 138 1245.95 158.152 1235.21 175.457C1224.7 192.762 1209.8 206.233 1190.53 215.871C1171.47 225.29 1119.46 230 1094.49 230H0V0ZM1121.86 186.3C1144.86 186.3 1163.15 179.948 1176.73 167.243C1190.53 154.319 1197.43 136.905 1197.43 115C1197.43 93.0952 1190.53 75.7905 1176.73 63.0857C1163.15 50.1619 1144.86 43.7 1121.86 43.7H53.2286V186.3H1121.86Z"
+        :d="data.dMorphInitial"
         fill="white"
         fill-opacity="0.7"
       />
@@ -19,29 +19,55 @@
 </template>
 
 <script>
-import { TimelineMax, Expo } from "gsap";
+import gsap from "gsap";
+import manageSvgDataOnResizeAndInit from './helpers/d/manageSvgDataOnResizeAndInit';
 
 export default {
   name: "MorphD",
+  data() {
+    return {
+      data: {
+        height: null,
+        dMorphFinal: null,
+        dMorphInitial: null,
+        widthInitial: null,
+        widthFinal: null,
+        viewBoxInitial: null,
+        viewBoxFinal: null,
+      }
+    }
+  },
   mounted() {
-    const morphTL = new TimelineMax();
-    const widthTL = new TimelineMax();
+    const morphTL = gsap.timeline();
+    const widthTL = gsap.timeline();
+
+    const pageWidth = window.innerWidth;
+    this.data = manageSvgDataOnResizeAndInit(pageWidth);
+
     morphTL.to("#morphD", 2.2, {
-      ease: Expo.easeInOut,
+      ease: 'Expo.easeInOut',
       delay: 0.6,
-      attr: {
-        d:
-          "M0 0H104.486C129.457 0 151.471 4.81905 170.529 14.4572C189.805 23.8762 204.7 37.2381 215.214 54.5429C225.948 71.8476 231.314 92 231.314 115C231.314 138 225.948 158.152 215.214 175.457C204.7 192.762 189.805 206.233 170.529 215.871C151.471 225.29 129.457 230 104.486 230H0V0ZM101.857 186.3C124.857 186.3 143.148 179.948 156.729 167.243C170.529 154.319 177.429 136.905 177.429 115C177.429 93.0952 170.529 75.7905 156.729 63.0857C143.148 50.1619 124.857 43.7 101.857 43.7H53.2286V186.3H101.857Z",
-      },
+      attr: { d: this.data.dMorphFinal },
     });
     widthTL.to("#DSvg", 2.2, {
-      ease: Expo.easeInOut,
+      ease: 'Expo.easeInOut',
       delay: 0.6,
       attr: {
-        width: 232,
-        viewBox: "0 0 232 230",
+        width: this.data.widthFinal,
+        viewBox: this.data.viewBoxFinal,
       },
     });
+  },
+  created() {
+    window.addEventListener("resize", this.trackWindowResize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.trackWindowResize);
+  },
+  methods: {
+    trackWindowResize(e) {
+      this.data = manageSvgDataOnResizeAndInit(e.target.innerWidth, {}, true);
+    },
   },
 };
 </script>

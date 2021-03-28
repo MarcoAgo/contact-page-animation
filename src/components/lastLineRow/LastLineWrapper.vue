@@ -17,17 +17,21 @@
 <script>
 import ALetter from './ALetter'
 import NamedLine from './Line';
-import { TimelineMax, Expo, TimelineLite } from "gsap";
+import gsap from "gsap";
 
 export default {
   name: 'LastLineWrapper',
   components: { ALetter, NamedLine },
   mounted() {
-    const containerTL = new TimelineMax();
-    const centeredContentTL = new TimelineLite();
+    const containerTL = gsap.timeline();
+    const centeredContentTL = gsap.timeline();
+
+    // GET WIDTH FOR ANIMATION TO START FROM OUT OF PAGE
+    const doubledWindowWidth = window.innerWidth * 2;
+    const fromX = window.innerWidth - doubledWindowWidth;
     
     containerTL
-      .from("#lastLineRow", 3, { ease: Expo.easeInOut, x: -2100 })
+      .from("#lastLineRow", 3, { ease: 'Expo.easeInOut', x: fromX - 1238 })
 
     centeredContentTL
       .from("#center", .7, { opacity: 0, delay: 3, display: 'none', y: 40 })
@@ -39,6 +43,7 @@ export default {
     padding: 0 24px;
     width: 100%;
     position: relative;
+    align-items: center;
   }
 
   #center {
@@ -58,5 +63,16 @@ export default {
   
   #center span {
     font-style: italic;
+  }
+
+  @media screen and (max-width: 1300px) {
+    #center p {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 100;
+      margin-bottom: 16px;
+      opacity: .7;
+      padding: 0 16px;
+    }
   }
 </style>

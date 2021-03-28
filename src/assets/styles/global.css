@@ -43,6 +43,7 @@ a {
 .end { justify-content: flex-end; }
 .start { justify-content: flex-start; }
 .spacedBetween { justify-content: space-between; }
+.centerAligned { align-items: center; }
 .fontSerif { font-family: 'Frankruh', serif; }
 
 .buttonDefault {

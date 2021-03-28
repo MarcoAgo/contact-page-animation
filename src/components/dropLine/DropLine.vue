@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { TimelineMax, Expo, Power4 } from "gsap";
+import gsap from "gsap";
 import MorphD from "../morph/MorphD.vue";
 import LettersEnterRight from "./LettersEnterRight";
 
@@ -24,15 +24,18 @@ export default {
   name: "DropLine",
   components: { MorphD, LettersEnterRight },
   mounted() {
-    const containerTL = new TimelineMax();
-    const number1TL = new TimelineMax();
-    const number2TL = new TimelineMax();
+    const containerTL = gsap.timeline();
+    const number1TL = gsap.timeline();
+    const number2TL = gsap.timeline();
 
-    number1TL.from('#number1', 2, { ease: Power4.easeOut, x: 16, opacity: 0, delay: 2.5 })
-    number2TL.from('#number2', 2, { ease: Power4.easeOut, x: 16, opacity: 0, delay: 2.5 });
+    // GET WIDTH FOR ANIMATION TO START FROM OUT O
+    const windowWidth = window.innerWidth;
+
+    number1TL.from('#number1', 2, { ease: 'Power4.easeOut', x: 16, opacity: 0, delay: 3 })
+    number2TL.from('#number2', 2, { ease: 'Power4.easeOut', x: 16, opacity: 0, delay: 3 });
 
     containerTL
-      .from("#dropLineContainer", 3, { ease: Expo.easeInOut, x: 1700 })
+      .from("#dropLineContainer", 3, { ease: 'Expo.easeInOut', x: windowWidth })
   },
 };
 </script>
@@ -47,6 +50,7 @@ export default {
     display: flex;
     padding: 0 24px;
     position: absolute;
+    align-items: center;
   }
 
   #numbersWrapper {
@@ -59,5 +63,19 @@ export default {
     height: 230px;
     min-width: 950px;
     max-width: 950px;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 1300px) {
+    #dropWrapper {
+      height: 230px;
+      min-width: 730px;
+      max-width: 730px;
+      align-items: center;
+    }
+
+    #numbersWrapper {
+      padding-top: 30px;
+    }
   }
 </style>

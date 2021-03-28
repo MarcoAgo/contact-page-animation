@@ -11,7 +11,7 @@ export default {
     const imageTL = gsap.timeline();
 
     imageTL
-      .from('#imageWrapper', 3, { delay: 1, ease: 'expo.easeOut', scale: 0 })
+      .from('#imageWrapper', 3, { delay: 1, ease: 'Expo.easeOut', scale: 0 })
   }
 }
 </script>
@@ -28,5 +28,17 @@ export default {
 
 #imageWrapper img {
   width: 100%;
+}
+
+@media screen and (max-width: 1300px) {
+  #imageWrapper {
+    height: 220px;
+    width: 350px;
+    overflow: hidden;
+    position: absolute;
+    left: calc(50% - 175px);
+    top: calc(50% - 110px);
+    z-index: 100;
+  }
 }
 </style>
